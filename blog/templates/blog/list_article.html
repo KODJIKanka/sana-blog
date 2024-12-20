@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %} 
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-sm">
+      <div class="card-body row no-gutters align-items-center">
+        <div class="col">
+          <input type="search" placeholder="Entrez le nom de l'article que vous vouliez rechercher" name="item-name" class="form-control form-control-borderless">
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary ">Rechercher</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+  <div class="container mt-4">
+    
+    <div class="row">
+      <div class="col-md-3">
+        <h4>Table des matières</h4>
+        {% for article in articles %}
+          <a class="text-warning" href="{{article.id}}"><h5>{{article.title|safe}}</h5></a>
+        {% endfor %}
+        
+      </div>
+      
+      
+        <div class="col-md-9">
+          {% for article in articles %}
+          <div class="card " >
+            <div class="card-body">
+              <div class="card-title">
+                <h4>{{article.title|safe}}</h4>
+                <h5>Publiée il ya {{article.created_at|timesince}}</h5>
+                <h6>{{article.content|truncatewords:4|safe}}</h6>
+              </div>
+              <a href="{{article.id}}" class="btn btn-warning">Lire plus</a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+     
+    </div>
+  </div>
+
+  <div>
+     <a class="page-link text-warning fw-bold" href="{% url 'list-group' %}"> Voir toutes les catégories</a>
+  </div>
+
+{% endblock %}
+

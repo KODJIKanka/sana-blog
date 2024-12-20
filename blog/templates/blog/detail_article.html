@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block content %} 
+
+<div class="container-fluid">
+    <div class="row mt-2">
+        <div class="d-flex flex-column justify-content-between col-auto min-vh-100">
+            <div class="sidebar mt-4">
+                <a class="text-warning d-flex align-items-center ms-4" role="button">
+                    <span class="fs-5 d-none d-sm-inline">SideMenu</span>
+                </a>
+                <hr class="text-warning d-none d-sm-block">
+                <ul class="nav flex-column mt-2 mt-sm-O"  id="sidemenu">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-warning bg-white" aria-current="page">
+                            <i class="fa fa-gauge"></i>
+                            <span class="ms-2 d-none d-sm-inline">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-warning text-warning bg-white" aria-current="page">
+                            <i class="fa fa-house"></i>
+                            <span class="ms-2 d-none d-sm-inline">Home</span>
+                        </a>
+                    </li>
+                    {% for articl in articles %}
+                    <li class="nav-item text-warning" >
+                        <a href="{% url 'detail' articl.id %}" class="nav-link text-warning bg-white" data-bs-toggle="collapse" data-bs-target="#article{{articl.id}}" aria-expanded="false" aria-controls="article{{articl.id}}" role="button">
+                            <span class="ms-2 d-none d-sm-inline">{{articl.title}}</span>
+                        </a>
+                        <div class="collapse" data-bs-parent="#sidemenu" id="article{{articl.id}}">
+                            <ul class="flex-column ms-1 list-unstyled">
+                                <li class="nav-item text-warning bg-white">
+                                    <a href="#" class="nav-link text-warning bg-white">Item1</a>
+    
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link text-warning bg-white">Item2</a>
+                                    
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    {% endfor %}
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-warning bg-white" aria-current="page">
+                            <i class="fa fa-users"></i>
+                            <span class="ms-2 d-none d-sm-inline">Customers</span>
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+            <div>
+                <div class="dropdown open">
+                    <a class="btn border-none outline-none dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-user"></i><span>Kodji</span>
+                    </a>
+                </div>
+                <div class="dropdown-menu" aria-labelledby="triggerId">
+                    <a href="#" class="dropdown-item">Profile</a>
+                    <a href="#" class="dropdown-item">Settings</a>
+                </div>
+        
+            </div>
+            
+        </div>
+        <div class="col-md-9 ">
+            <div class="display-2 mt-3 mb-3">
+              <h2 class="text-warning">{{article.title|safe}}</h2>
+            </div>
+            
+            <div>
+                {{article.content|safe}}
+            </div>
+            <div class="mb-4">
+                <a href="http://ko-fi.com/kodjikanka">
+                    <div>
+                        <h4 class="text-warning">Vous avez apprécié ce contenu???</h4>
+                        <p class="text-dark">Prouvez-le moi en m'offrant du café</p>
+                        <div>
+                            <div>
+                                <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support Me on Ko-fi', '#29abe0', 'G2G7140N33');kofiwidget2.draw();</script> 
+                            </div>
+                        </div>
+                        <h5 class="text-dark">Votre soutien m'aide à continuer à partager le contenu de qualité.</h5>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    
+</div>
+
+{% endblock %}

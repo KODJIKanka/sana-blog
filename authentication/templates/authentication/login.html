@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div>
+    <form  method="post">{% csrf_token %} 
+        <div class="card">
+            <div class="card-header text-center"> <i class="fas fa-user"></i> <h2>Connexion au Blog</h2></div>
+            <div class="card-body ms-4 ">
+                    {{form.as_p}}
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-primary btn-block" type="submit"> Se connecter </button>
+            </div>
+          </div>
+            
+    </form>
+</div>
+    
+   <p>Pas encore inscrit??? <a href="{% url 'sinup' %}">S'inscrire</a></p>
+
+{% endblock %}
